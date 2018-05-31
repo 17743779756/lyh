@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script type="text/javascript" src="../../res/js/jquery.js"></script>
+<script type="text/javascript" src="../../res/js/util.js"></script>
+<script type="text/javascript" src="../../res/js/vue.js"></script>
+<link rel="stylesheet" href="../../res/css/bootstrap.css">
+<script>
+$(function () {
+    var baseUrl = util.getServerBaseUrl();
+    var request = {
+        QueryString: function (val) {
+            var uri = window.location.search;
+            var re = new RegExp("" + val + "=([^&?]*)", "ig");
+            return ((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+        }
+    };
+    var id = request.QueryString("id");
+    $.ajax({
+        url : baseUrl+"salesReturn/getDetails",
+        type : "post",
+        data : {
+            id : id,
+        },
+        dataType : "json",
+        success : function (result) {
+            if(result.msg=="尚未登录"){
+                window.location.href="login.html?redictUrl=salesReturnDetails.html";
+            }else {
+                $("div").text(result.data.details);
+            }
+        },
+        error : function () {
+
+        }
+    })
+})
+</script>
+<div style="text-align: center">
+
+</div>

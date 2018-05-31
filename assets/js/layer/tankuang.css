@@ -1,0 +1,44 @@
+@charset "utf-8";
+/* CSS Document */
+.layui-layer-setwin .layui-layer-close1
+{
+	width:16px;
+	height:16px;
+	background-position:0px 0px;
+}
+.layui-layer-setwin .layui-layer-ico
+{
+	background:url(skin/default/close1.png) no-repeat !important;
+}
+.layui-layer-setwin .layui-layer-ico:hover
+{
+	background:url(skin/default/close2.png) no-repeat;
+}
+.layui-layer-title
+{
+	font-weight:bold;
+	color:#666666;
+	border-bottom:1px solid #cfcfcf;
+}
+.check_warn1
+{
+	height:110px;
+	width:240px;
+	font-size:12px;
+	color:#666666;
+	text-align:center;
+	padding-top:40px;
+	padding-left:30px;
+	background:url(skin/default/true.png) no-repeat 75px 35px;
+}
+.check_warn2
+{
+	height:110px;
+	width:240px;
+	font-size:12px;
+	color:#666666;
+	text-align:center;
+	padding-top:40px;
+	padding-left:40px;
+	background:url(skin/default/false.png) no-repeat 75px 35px;
+}

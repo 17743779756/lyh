@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script type="text/javascript" src="../../res/js/jquery.js"></script>
+<script type="text/javascript" src="../../res/js/util.js"></script>
+<script type="text/javascript" src="../../res/js/vue.js"></script>
+<link rel="stylesheet" href="../../res/css/bootstrap.css">
+<script type="text/javascript" src="../../res/js/admin/cateList.js"></script>
+<script>
+    $(function(){
+        var baseUrl = util.getServerBaseUrl();
+        var request = {
+            QueryString: function (val) {
+                var uri = window.location.search;
+                var re = new RegExp("" + val + "=([^&?]*)", "ig");
+                return ((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+            }
+        };
+        var parentId = request.QueryString("id");
+        var v = new Vue({
+            el : '#categoryTab',
+            data: {
+                items : '',
+                parentId : parentId,
+            },
+            mounted:function(){
+                this.getSpec(this.parentId);
+            },
+            methods: {
+                getSpec: function (parentId) {
+                    console.log(parentId);
+                    $.ajax({
+                        url :  baseUrl + "Cate/selectAllCate",
+                        type : "post",
+                        data : {parentId:parentId},
+                        dataType : "json",
+                        success : function(result){
+                            v.items = result.data;
+                        },
+                        error: function () {
+                            alert("加载失败,请检查网络")
+                        }
+
+                    })
+                },
+                updateCate : function (id) {
+                    window.open("addCategory.html?id="+id);
+                },
+                deleteCate:function (id) {
+                    $.ajax({
+                        url : baseUrl+"Cate/deleteCategory",
+                        type : "post",
+                        data : {
+                            Id: id,
+                        },
+                        dataType : "json",
+                        success : function (result) {
+                            if(result.msg=="尚未登录"){
+                                window.location.href="login.html?redictUrl=goodsList.html";
+                            }else if(result.msg=="删除成功"){
+                                alert("删除成功");
+                                window.location.reload();
+                            }
+                        },
+                        error : function () {
+
+                        }
+                    })
+                }
+            }
+        });
+    });
+</script>
+<style>
+    #categoryTab{
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 10px;
+    }
+    #categoryTab tr{
+        width: auto;
+        height: 30px;
+        text-align: center;
+    }
+    #categoryTab tr td{
+        width: 23%;
+        text-align: center;
+    }
+    .form-control{
+        margin-left: 25%;
+        width: 50%;
+    }
+</style>
+<table id="categoryTab" >
+    <tr style="text-align: center">
+        <td>类别标题</td>
+        <td>所属父类</td>
+        <td>编辑</td>
+    </tr>
+    <tr v-if="items != null" v-for="(item,index) of items">
+        <td>{{item.cName}}</td>
+        <td>{{item.cParentId}}</td>
+        <td>
+            <input value="修改" @click="updateCate(item.id)" class = "btn btn btn-primary" type="button"/>
+            &nbsp;--&nbsp;
+            <input value="删除" @click="deleteCate(item.id)" class = "btn btn btn-primary" type="button"/>
+        </td>
+    </tr>
+    <tr v-else>
+        <td>暂无子分类</td>
+    </tr>
+</table>

@@ -1,0 +1,360 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>咕嘟商城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+    <script type="text/javascript" src="../../res/js/jquery.js"></script>
+
+    <link rel="stylesheet" href="../../res/css/style.css">
+    <link rel="stylesheet" href="../../res/css/loader-style.css">
+    <link rel="stylesheet" href="../../res/css/bootstrap.css">
+
+    <link href="../../res/js/footable/css/footable.core.css?v=2-0-1" rel="stylesheet" type="text/css">
+    <link href="../../res/js/footable/css/footable.standalone.css" rel="stylesheet" type="text/css">
+    <link href="../../res/js/footable/css/footable-demos.css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="../../res/js/dataTable/lib/jquery.dataTables/css/DT_bootstrap.css">
+    <link rel="stylesheet" href="../../res/js/dataTable/css/datatables.responsive.css">
+
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="../../res/ico/minus.png">
+
+    <style type="text/css">
+        /*======消息列表=====*/
+        .titleToggle{ margin-top:10px;}
+        .titleToggle .padding-large-right{ padding-right:30px;}
+        .titleToggle span a{height: 30px;cursor: pointer;line-height: 30px;color: #656565;display: block;font-weight: 600;float: left; text-decoration:none;}
+        .titleToggle span .active{ color:#098cba; border-bottom:solid 2px #098cba;}
+        .titleToggle span a:hover{color:#098cba; border-bottom:solid 2px #098cba;}
+    </style>
+</head>
+
+<body>
+<!-- Preloader -->
+<div id="preloader">
+    <div id="status">&nbsp;</div>
+</div>
+<!-- TOP NAVBAR -->
+<nav role="navigation" class="navbar navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle" type="button">
+                <span class="entypo-menu"></span>
+            </button>
+            <div id="logo-mobile" class="visible-xs">
+                <h1>咕嘟商城</h1>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+<!-- /END OF TOP NAVBAR -->
+<!-- SIDE MENU -->
+<div id="skin-select">
+
+    <div id="logo">
+        <h1>咕嘟商城</h1>
+    </div>
+    <a id="toggle">
+        <span class="entypo-menu"></span>
+    </a>
+    <div class="skin-part">
+        <div id="tree-wrap">
+            <div class="side-bar">
+                <ul class="topnav menu-left-nest">
+                    <li>
+                        <a class="tooltip-tip ajax-load" title="管理员信息">
+                            <i class="icon-document-edit"></i>
+                            <span>管理员信息</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="updatePassword.html" title="修改密码">
+                                    <i class="entypo-doc-text"></i><span>修改密码</span>
+                                </a>
+                            </li>
+                            <!--<li>-->
+                            <!--<a class="tooltip-tip2 ajax-load" href="auto.html" title="权限管理">-->
+                            <!--<i class="entypo-newspaper"></i><span>权限管理</span>-->
+                            <!--</a>-->
+                            <!--</li>-->
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="topnav menu-left-nest">
+                    <li>
+                        <a class="tooltip-tip ajax-load" title="订单管理">
+                            <i class="icon-window"></i>
+                            <span>订单管理</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="order.html" title="订单列表">
+                                    <i class="entypo-doc-text"></i><span>订单列表</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="tooltip-tip ajax-load" title="商品管理">
+                            <i class="icon-window"></i>
+                            <span>商品管理</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="goodsList.html" title="商品列表">
+                                    <i class="entypo-doc-text"></i><span>商品列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="addGoods.html" title="商品上传">
+                                    <i class="entypo-newspaper"></i><span>普通商品上传</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="addDisGoods.html" title="商品上传">
+                                    <i class="entypo-newspaper"></i><span>秒杀商品上传</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="addAdvert.html" title="商品上传">
+                                    <i class="entypo-newspaper"></i><span>广告/轮播图上传</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="tooltip-tip ajax-load" title="类目管理">
+                            <i class="icon-window"></i>
+                            <span>类目管理</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="cateList.html" title="类目管理">
+                                    <i class="entypo-doc-text"></i><span>类目列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="addCategory.html" title="类目编辑">
+                                    <i class="entypo-newspaper"></i><span>类目编辑</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="tooltip-tip"  title="消息管理">
+                            <i class="icon-window"></i>
+                            <span>消息管理</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="newsSortList.html" title="消息列表">
+                                    <i class="entypo-doc-text"></i><span>消息类别列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="newsList.html" title="消息列表">
+                                    <i class="entypo-doc-text"></i><span>消息列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="newsSort.html" title="消息列表">
+                                    <i class="entypo-doc-text"></i><span>消息类别添加</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="news.html" title="消息列表">
+                                    <i class="entypo-doc-text"></i><span>消息添加</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="tooltip-tip" href="javascript:;" title="提现管理">
+                            <i class="icon-window"></i>
+                            <span>提现管理</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="txList.html" title="提现列表">
+                                    <i class="entypo-doc-text"></i><span>提现列表</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="tooltip-tip" href="javascript:;" title="费率管理">
+                            <i class="icon-window"></i>
+                            <span>费率管理</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="messageList.html" title="费率管理">
+                                    <i class="entypo-doc-text"></i><span>费率管理</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="tooltip-tip" title="活动管理">
+                            <i class="icon-window"></i>
+                            <span>活动管理</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="couponsList.html" title="优惠券列表">
+                                    <i class="entypo-doc-text"></i><span>优惠券列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="CouponsSortList.html" title="优惠券种类列表">
+                                    <i class="entypo-doc-text"></i><span>优惠券种类列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="addCouponsSort.html" title="添加优惠券种类">
+                                    <i class="entypo-doc-text"></i><span>添加优惠券种类</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="addCoupons.html" title="添加优惠券">
+                                    <i class="entypo-doc-text"></i><span>添加优惠券</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="tooltip-tip"title="退货/发货">
+                            <i class="icon-window"></i>
+                            <span>退货/发货</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="salesReturnList.html" title="优惠券种类列表">
+                                    <i class="entypo-doc-text"></i><span>退货列表</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="expressFind.html" title="添加优惠券种类">
+                                    <i class="entypo-doc-text"></i><span>发货添加</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul id="menu-showhide" class="topnav menu-left-nest">
+                    <li>
+                        <a class="tooltip-tip"  title="分销管理">
+                            <i class="icon-document"></i>
+                            <span>分销管理</span>
+                        </a>
+                        <ul>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="personnel.html" title="Blog List">
+                                    <i class="entypo-doc-text"></i><span>分销用户</span></a>
+                            </li>
+                            <li>
+                                <a class="tooltip-tip2 ajax-load" href="Domestic.html" title="Blog List">
+                                    <i class="entypo-doc-text"></i><span>所有用户</span></a>
+                            </li>
+
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END OF SIDE MENU -->
+<!--  PAPER WRAP -->
+<div class="wrap-fluid" id="Footable">
+    <div class="container-fluid paper-wrap bevel tlbr">
+        <!-- CONTENT -->
+        <!--TITLE -->
+        <div class="row">
+            <div id="paper-top">
+                <div class="col-sm-3">
+                    <h2 class="tittle-content-header">
+                        <span class="entypo-menu"></span>
+                        <span>消息类别列表</span>
+                    </h2>
+                </div>
+            </div>
+        </div>
+        <!--/ TITLE -->
+
+        <div class="content-wrap">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="nest" >
+                        <div class="title-alt">
+                            <div class="titleToggle">
+                                <span class="padding-large-right manage-title pull-left sortList"><a class="active" href="javascript:;" >消息类别列表</a></span>
+                            </div>
+                        </div>
+                        <!-- 数据展示 -->
+                        <div class="body-nest" >
+                            <table class="table-striped footable-res footable metro-blue" >
+                                <thead>
+                                <tr>
+                                    <th>类别名称</th>
+                                    <th>类别别名</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                <tr v-if="items.obj!=null" v-for="item of items.obj" >
+                                    <td>{{item.sortName}}</td>
+                                    <td>{{item.sortTypes}}</td>
+                                    <td>
+                                        <a @Click="updateById(item.id)">编辑</a>
+                                        <a @Click="deleteById(item.id)">删除</a>
+                                    </td>
+                                </tr>
+
+                                <tr v-if="items!=null">
+                                    <td colspan="5" style="text-align: center;">
+                                        <span><a href="javascript:;" @Click="pageJump('homePage')">首页</a></span>&nbsp;&nbsp;&nbsp;
+                                        <span><a href="javascript:;" @Click="pageChange(items.pageNum, 'up')">上一页</a></span>&nbsp;&nbsp;&nbsp;
+                                        <span>{{items.pageNum}}/{{items.totalPage}}</span>&nbsp;&nbsp;&nbsp;
+                                        <span><a href="javascript:;" @Click="pageChange(items.pageNum,'down')">下一页</a></span>&nbsp;&nbsp;&nbsp;
+                                        <span><a href="javascript:;" @Click="pageJump('endPage')">末页</a></span>
+                                    </td>
+                                </tr>
+                                <tr v-else><td colspan="4" style="text-align: center;">暂无数据</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /END OF CONTENT -->
+    </div>
+</div>
+<!--  END OF PAPER WRAP -->
+
+<!-- MAIN EFFECT -->
+<script type="text/javascript" src="../../res/js/preloader.js"></script>
+<script type="text/javascript" src="../../res/js/bootstrap.js"></script>
+<script type="text/javascript" src="../../res/js/app.js"></script>
+<script type="text/javascript" src="../../res/js/load.js"></script>
+<script type="text/javascript" src="../../res/js/main.js"></script>
+
+<!-- /MAIN EFFECT -->
+<!-- GAGE -->
+<script type="text/javascript" src="../../res/js/toggle_close.js"></script>
+
+<script type="text/javascript" src="../../res/js/layer/layer.js"></script>
+<script type="text/javascript" src="../../res/js/util.js"></script>
+<script type="text/javascript" src="../../res/js/vue.js"></script>
+<script type="text/javascript" src="../../res/js/admin/newsSortList.js"></script>
+
+</body>
+</html>

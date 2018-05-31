@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<script type="text/javascript" src="../../res/js/jquery.js"></script>
+<script type="text/javascript" src="../../res/js/util.js"></script>
+<script type="text/javascript" src="../../res/js/vue.js"></script>
+<link rel="stylesheet" href="../../res/css/bootstrap.css">
+<script>
+$(function(){
+    var baseUrl = util.getServerBaseUrl();
+    var request = {
+        QueryString: function (val) {
+            var uri = window.location.search;
+            var re = new RegExp("" + val + "=([^&?]*)", "ig");
+            return ((uri.match(re)) ? (uri.match(re)[0].substr(val.length + 1)) : null);
+        }
+    };
+    var goodsId = request.QueryString("goodsId");
+    var v = new Vue({
+        el : '#specTab',
+        data: {
+            items : '',
+            spec1Name : '',
+            spec2Name : '',
+        },
+        mounted:function(){
+            this.getSpec();
+        },
+        methods: {
+            getSpec: function () {
+                $.ajax({
+                    url: baseUrl + "goods/getSpecByGoodsId",
+                    type: "post",
+                    data: {
+                        goodsId: goodsId
+                    },
+                    dataType: "json",
+                    success: function (result) {
+                        v.items = result.data.spec;
+                        v.spec1Name = result.data.spec1Name;
+                        v.spec2Name = result.data.spec2Name;
+                    },
+                    error: function () {
+                        alert("加载失败,请检查网络")
+                    }
+
+                })
+            },
+            updateSpec:function (specId,index) {
+                var price = $("#price"+index).val();
+                var store = $("#store"+index).val();
+                $.ajax({
+                    url : baseUrl+"goods/updateSpecPrice",
+                    type : "post",
+                    data : {
+                        id : specId,
+                        price : price,
+                        store : store
+                    },
+                    dataType : "json",
+                    success : function (result) {
+                        if(result.msg=="尚未登录"){
+                            window.location.href="login.html?redictUrl=goodsList.html";
+                        }else if(result.msg=="储存完成"){
+                            alert("修改成功");
+                            window.location.reload();
+                        }
+                    },
+                    error : function () {
+
+                    }
+                })
+            },
+            deleteSpec:function (goodsId) {
+                $.ajax({
+                    url : baseUrl+"goods/deleteSpec",
+                    type : "post",
+                    data : {
+                        id : goodsId,
+                    },
+                    dataType : "json",
+                    success : function (result) {
+                        if(result.msg=="尚未登录"){
+                            window.location.href="login.html?redictUrl=goodsList.html";
+                        }else if(result.msg=="删除成功"){
+                                alert("删除成功");
+                                window.location.reload();
+                        }
+                    },
+                    error : function () {
+
+                    }
+                })
+            }
+        }
+    });
+});
+</script>
+<style>
+     #specTab{
+         width: 100%;
+         border-collapse: separate;
+         border-spacing: 10px;
+     }
+    #specTab tr{
+        width: auto;
+        height: 30px;
+        text-align: center;
+    }
+    #specTab tr td{
+        width: 23%;
+        text-align: center;
+    }
+    .form-control{
+        margin-left: 25%;
+        width: 50%;
+    }
+</style>
+<table id="specTab" >
+    <tr style="text-align: center">
+        <td>{{spec1Name}}</td>
+        <td v-if="spec2Name!='' && spec2Name != null">{{spec2Name}}</td>
+        <td>价格</td>
+        <td>库存</td>
+        <td>操作</td>
+    </tr>
+    <tr v-if="items != null" v-for="(item,index) of items">
+        <td>{{item.spec1}}</td>
+        <td v-if="item.spec2 != null && item.spec2 != ''">{{item.spec2}}</td>
+        <td>
+            <input v-model.lazy='item.price' class="form-control" :id="('price'+(index))" />
+        </td>
+        <td>
+            <input v-model.lazy='item.store' class="form-control" :id="('store'+(index))"/>
+        </td>
+        <td>
+            <input value="修改" @click="updateSpec(item.id,index)" class = "btn btn btn-primary" type="button"/>
+            --&nbsp;
+            <input value="删除" @click="deleteSpec(item.id)" class = "btn btn btn-primary" type="button"/>
+        </td>
+    </tr>
+</table>
