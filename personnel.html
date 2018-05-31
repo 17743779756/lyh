@@ -308,6 +308,7 @@
                                     <tr>
                                         <th>用户名</th>
                                         <th>上级推荐码</th>
+                                        <th>用户推荐码</th>
                                         <th>手机号</th>
                                         <th>可提现余额</th>
                                         <th>已提现金额</th>
@@ -324,6 +325,7 @@
                                     <tr v-if="items.obj!=null" v-for="item of items.obj" >
                                         <td width="130">{{item.userName}}</td>
                                         <td>{{item.recommendCode}}</td>
+                                        <td>{{item.recommendMyCode}}</td>
                                         <td>{{item.mobile}}</td>
                                         <td>{{item.balance}}</td>
                                         <td>{{item.ftMoney}}</td>
